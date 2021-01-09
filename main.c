@@ -207,7 +207,7 @@ int pos=1;
 int total_pos=1;
 int total_d;
 int move_skip;
-void redrit(GBSTMR*);
+void redrit();
 int sm;
 int forward;
 int halt;
@@ -279,7 +279,8 @@ void task_list3()
         }
         DrawProgress(nl->name, 1);
         CloseCSM(zin);
-        GBS_StartTimerProc(&start_tmr, 216, task_list3);
+
+        GBS_StartTimerProc(&start_tmr, 216, (void (*)(GBSTMR *))task_list3);
     }
     else
     {
@@ -627,7 +628,7 @@ void OnRedraw(MAIN_GUI *data)
         }
         FreeWS(ws);
     }
-    if(task_list!=3) GBS_StartTimerProc(&start_tmr, refresh, redrit);
+    if(task_list!=3) GBS_StartTimerProc(&start_tmr, refresh, (void (*)(GBSTMR *))redrit);
 }
 
 void onCreate(MAIN_GUI *data, void *(*malloc_adr)(int)) //Create
@@ -661,7 +662,7 @@ int closing;
 int show_daemons;
 
 
-void redrit(GBSTMR *tmr)
+void redrit()
 {
     DirectRedrawGUI();
 }
@@ -1586,7 +1587,7 @@ void load_bookmark_list()
     }
 }
 
-void DoSplices(GBSTMR* tmr)
+void DoSplices()
 {
     extern const int SHOW_DAEMONS;
     extern int show_daemons;
@@ -1637,8 +1638,8 @@ void DoSplices(GBSTMR* tmr)
 int main(const char *exename, const char *fname)
 {
     mode=0;
-    if (InitConfig()!=2) GBS_StartTimerProc(&start_tmr,TMR_SECOND(60),DoSplices);
-    else DoSplices(NULL);
+    if (InitConfig()!=2) GBS_StartTimerProc(&start_tmr,TMR_SECOND(60),(void (*)(GBSTMR *))DoSplices);
+    else DoSplices();
     init_turnoff();
     return 0;
 }

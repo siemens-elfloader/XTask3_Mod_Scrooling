@@ -1,0 +1,41 @@
+# depslib dependency file v1.0
+1610201994 source:/home/danil_e71/arm/src/xtask3_mod_scrooling/conf_loader.c
+	<swilib.h>
+	<stdio.h>
+	<stdlib.h>
+	<cfg_items.h>
+	"conf_loader.h"
+
+1191680901 /home/danil_e71/arm/src/xtask3_mod_scrooling/conf_loader.h
+
+1610201689 source:/home/danil_e71/arm/src/xtask3_mod_scrooling/config_data.c
+	<swilib.h>
+	<conf_loader.h>
+	<cfg_items.h>
+
+1610200774 source:/home/danil_e71/arm/src/xtask3_mod_scrooling/gui.c
+	<swilib.h>
+	<stdio.h>
+	<stdlib.h>
+	"rect_patcher.h"
+	"swaper.h"
+	"main.h"
+
+1610202120 /home/danil_e71/arm/src/xtask3_mod_scrooling/rect_patcher.h
+
+1187348627 /home/danil_e71/arm/src/xtask3_mod_scrooling/swaper.h
+
+1214303675 /home/danil_e71/arm/src/xtask3_mod_scrooling/main.h
+
+1610199834 source:/home/danil_e71/arm/src/xtask3_mod_scrooling/strings2.c
+	<swilib.h>
+	"strings2.h"
+
+1196285520 /home/danil_e71/arm/src/xtask3_mod_scrooling/strings2.h
+
+1610203618 source:/home/danil_e71/arm/src/xtask3_mod_scrooling/swaper.c
+	<swilib.h>
+	<stdio.h>
+	<stdlib.h>
+	"swaper.h"
+
