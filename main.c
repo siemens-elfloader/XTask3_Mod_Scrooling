@@ -1068,19 +1068,6 @@ void UpdateCSMname(void)
     wsprintf((WSHDR *)(&MAINCSM.maincsm_name),"xtask 3 mod");
     FreeWS(ws);
 }
-/*
-CSM_RAM *GetUnderIdleCSM(void)
-{
-  CSM_RAM *u;
-  CSM_DESC *UnderIdleDesc;
-  UnderIdleDesc=(CSM_DESC *)strtoul((char *)"A042B384",0,0x10);
-  LockSched();
-  u=CSM_root()->csm_q->csm.first;
-  while(u && u->constr!=UnderIdleDesc) u=u->next;
-  UnlockSched();
-  return u;
-}*/
-
 extern const char UNDER_IDLE_CONSTR[];
 extern const char *successed_config_filename;
 
@@ -1096,6 +1083,7 @@ CSM_RAM *GetUnderIdleCSM(void)
     {
         UnderIdleDesc=((CSM_RAM *)(FindCSMbyID(CSM_root()->idle_id))->prev)->constr;
         sprintf((char *)UNDER_IDLE_CONSTR,"%08X",UnderIdleDesc);
+
         SaveConfig(successed_config_filename);
     }
     LockSched();
@@ -1502,13 +1490,20 @@ L1:
 
 void MyIDLECSM_onClose(CSM_RAM *data)
 {
-    //extern void seqkill(void *data, void(*next_in_seq)(CSM_RAM *), void *data_to_kill, void *seqkiller);
-    // extern void *ELF_BEGIN;
-    GBS_DelTimer(&start_tmr);
-    RemoveKeybMsgHook((void *)my_keyhook);
-    kill_elf();
-    //eqkill(data,old_icsm_onClose,&ELF_BEGIN,SEQKILLER_ADR());
+
+
+
+	extern void *__ex;
+//  extern void seqkill(void *data, void(*next_in_seq)(CSM_RAM *), void *data_to_kill, void *seqkiller);
+//  extern void *ELF_BEGIN;
+  GBS_DelTimer(&start_tmr);
+  RemoveKeybMsgHook((void *)my_keyhook);
+//  seqkill(data,old_icsm_onClose,&ELF_BEGIN,SEQKILLER_ADR());
+  elfclose(__ex);
+#warning "Testo'.."
 }
+
+
 
 void load_icon_list()
 {

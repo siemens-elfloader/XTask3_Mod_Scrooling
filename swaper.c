@@ -67,7 +67,7 @@ static int do_CSMtoTop(CSMQ *csm_q, void *_cmd)
   return 1;
 }
 
-static void LLaddToEnd(LLQ *ll, void *data)
+static inline void LLaddToEnd(LLQ *ll, void *data)
 {
   LLIST *d=data;
   d->next=NULL;
